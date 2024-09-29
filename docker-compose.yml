@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  webapp-search-products:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    image: webapp-search-products
+    ports:
+      - "3000:3000"

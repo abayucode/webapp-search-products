@@ -20,7 +20,10 @@ export default function ProductDetail(props) {
           <div className="flex justify-between line-clamp-1">
             <div>
               <p className="text-black font-bold">{searchParams.productName}</p>
-              <p className="text-black">Rp. <p className="text-black font-bold">{searchParams.productPrice}</p></p>
+              <div className="text-black flex">
+                <p>Rp.</p>
+                <p className="text-black font-bold">{searchParams.productPrice}</p>
+              </div>
             </div>
             <div>
               <p className="text-black font-bold line-clamp-1 float-end">{searchParams.storeName}</p>

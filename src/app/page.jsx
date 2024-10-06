@@ -4,13 +4,17 @@ import Image from "next/image";
 import { ic_search } from "../../public/assets/icon";
 import { SearchComponent } from "@/components/search_input/page";
 import { Loading } from "@/components/loading/page";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import Link from "next/link";
+import displayProduct, { initialState } from "@/hooks/reducers/display-product/page";
+import { displayProductAction } from "@/hooks/actions/display-product/page";
 
 export default function Home() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [dataProducts, setIsDataProducts] = useState([])
+  const [state, dispatch] = useReducer(displayProduct, '', () => initialState)
+
 
   useEffect(() => {
     try {
@@ -24,7 +28,7 @@ export default function Home() {
             // 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization,Content-Length,X-Requested-With'
           },
           body: JSON.stringify({
-            "value": "fanta"
+            "value": "scinti"
           })
         })
         const result = await response.json();
@@ -37,11 +41,25 @@ export default function Home() {
       console.error('ini errornya suu ', error)
     }
   }, [])
+
+  useEffect(() => {
+    const {
+    result,
+    loading,
+    error,
+    } = state;
+    
+    console.log(result);
+  }, [state])
+
+  const triggerSearch = (value) => {
+    dispatch(displayProductAction(value))
+  }
   
 
   return (
     <main className="flex flex-col min-h-screen justify-center items-center bg-emerald-50 p-5">
-      <SearchComponent />
+      <SearchComponent triggerSearch={triggerSearch} />
       {isLoading ? <Loading /> : null}
       <div
         className="grid grid-cols-2 gap-3">
@@ -61,6 +79,7 @@ export default function Home() {
                   alt="product"
                   width={100}
                   height={100}
+                  priority={true}
                 />
               </div>
               <div className="self-start">

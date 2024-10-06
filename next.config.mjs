@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: ['skintific.com', 'down-id.img.susercontent.com']
+    remotePatterns: [
+      { hostname: 'skintific.com' },
+      { hostname: 'down-id.img.susercontent.com' }
+    ]
   },
   output: 'standalone'
 };

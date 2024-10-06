@@ -17,29 +17,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    try {
-      async function fetchAPI() {
-        const response = await fetch('http://localhost:8081/api/v1.0/b2c/products', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            // 'Access-Control-Allow-Origin': '*',
-            // 'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS',
-            // 'Access-Control-Allow-Headers': 'Content-Type, Origin, Accept, Authorization,Content-Length,X-Requested-With'
-          },
-          body: JSON.stringify({
-            "value": "scinti"
-          })
-        })
-        const result = await response.json();
-        setIsDataProducts(result.result)
-        
-      }
-
-      fetchAPI()
-    } catch (error) {
-      console.error('ini errornya suu ', error)
-    }
+    
   }, [])
 
   useEffect(() => {

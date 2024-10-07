@@ -3,7 +3,7 @@ import { DISPLAY_PRODUCT_FAILED, DISPLAY_PRODUCT_LOADING, DISPLAY_PRODUCT_SUCCES
 export const initialState = {
   displayProductData: [],
   error: null,
-  loading: true,
+  loading: false,
 }
 
 export default function appReducers(state = initialState, action) {
@@ -11,20 +11,23 @@ export default function appReducers(state = initialState, action) {
     case DISPLAY_PRODUCT_LOADING:
       return {
         ...state,
-        displayProductData: null,
-        error: null
+        displayProductData: [],
+        error: null,
+        loading: true,
       }
     case DISPLAY_PRODUCT_FAILED:
       return {
         ...state,
         displayProductData: null,
-        error: action.error
+        error: action.error,
+        loading: false,
       }
     case DISPLAY_PRODUCT_SUCCESS:
       return {
         ...state,
         displayProductData: action.payload,
-        error: null
+        error: null,
+        loading: false
       }
     default:
       return state;

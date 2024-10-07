@@ -1,11 +1,7 @@
-export default async function fetchUtil(url, headers, body) {
+export default async function fetchUtil(url, request) {
   try {
-    const result = await fetch(url, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(body)
-    })
-
+    const result = await fetch(url, request)
+    
     return result.json()
 
   } catch (error) {

@@ -8,3 +8,17 @@ export function displayProductAction(value) {
     value: value
   }
 }
+
+export function displayProductSuccess(result) {
+  return {
+    type: DISPLAY_PRODUCT_SUCCESS,
+    payload: result
+  }
+}
+
+export function displayProductError(error) {
+  return {
+    type: DISPLAY_PRODUCT_FAILED,
+    error: error
+  }
+}

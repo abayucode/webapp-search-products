@@ -1,39 +1,27 @@
 "use client"
 
 import Image from "next/image";
-import { ic_search } from "../../public/assets/icon";
 import { SearchComponent } from "@/components/search_input/page";
 import { Loading } from "@/components/loading/page";
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
-import displayProduct, { initialState } from "@/hooks/reducers/display-product/page";
-import { displayProductAction } from "@/hooks/actions/display-product/page";
+import { AppContext } from "@/hooks/context/AppContext";
+import { useDisplayProducts } from "@/hooks/custom/usePostApi";
 
 export default function Home() {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [dataProducts, setIsDataProducts] = useState([])
-  const [state, dispatch] = useReducer(displayProduct, '', () => initialState)
+  const [dataProducts, setDataProducts] = useState([])
+  
+  const { postData } = useDisplayProducts()
+  
+  const { state } = useContext(AppContext)
 
-
-  useEffect(() => {
-    
-  }, [])
-
-  useEffect(() => {
-    const {
-    result,
-    loading,
-    error,
-    } = state;
-    
-    console.log(result);
-  }, [state])
 
   const triggerSearch = (value) => {
-    dispatch(displayProductAction(value))
+    console.log('dipanngil');
+    postData({ value })
   }
-  
 
   return (
     <main className="flex flex-col min-h-screen justify-center items-center bg-emerald-50 p-5">

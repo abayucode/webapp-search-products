@@ -1,13 +1,13 @@
 "use client"
 
-import { createContext, useReducer } from "react";
-import displayProduct, { initialState } from "../reducers/display-product/page";
+import { createContext, useReducer, useEffect } from "react";
+import appReducers, { initialState } from "../reducers/page";
 
 export const AppContext = createContext()
 
 export const AppContextProvider = ({ children }) => {
   
-  const [state, dispatch] = useReducer(displayProduct, initialState)
+  const [state, dispatch] = useReducer(appReducers, initialState)
 
   return (
     <AppContext.Provider value={{state, dispatch}}>
